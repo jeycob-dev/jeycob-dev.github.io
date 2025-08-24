@@ -314,6 +314,11 @@ body {
   min-width: 100px;
   text-align: center;
   filter: drop-shadow(0 0 6px #f791fe);
+
+  /*para centrar la imagen*/
+  display: flex;            /* Activa flexbox */
+  justify-content: center;  /* Centra horizontalmente */
+  align-items: center;      /* Centra verticalmente */
 }
 
 .matricula-imagen img {
@@ -690,4 +695,5 @@ body {
 @keyframes animate-line {
   from { background-position: 0 0; }
   to   { background-position: 200% 0; }
+
 }*/
