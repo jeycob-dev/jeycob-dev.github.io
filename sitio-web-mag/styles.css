@@ -1,0 +1,693 @@
+/*TIPOGRAFIAS DISPONIBLES: 
+font-family: "Oregano", cursive;
+font-family: "M PLUS Code Latin", monospace;
+font-family: "Rubik Doodle Shadow", system-ui;
+*/
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /*font-family: 'Segoe UI', sans-serif;*/
+  font-family: "M PLUS Code Latin", monospace;
+  background-color: #111;
+  color: white;
+}
+
+/* Portada con video */
+.portada {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+#bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Logo y título centrados */
+.logo-titulo {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.logo-mag {
+  width: 20rem;
+  margin-bottom: 1rem;
+}
+
+.titulo-mag {
+  font-family: "Sixtyfour Convergence", sans-serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Bloques informativos */
+.info-institucion {
+  background-color: transparent;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  padding: 4rem 2rem;
+}
+
+.bloque-transparente {
+  background: rgba(85, 252, 135, 0.05);
+  /*border: 0.15rem solid rgba(219, 134, 134, 0.982);*/
+  border-radius: 2rem;
+  padding: 0.75rem 0.5rem;
+  min-width: 180px;
+  text-align: center;
+  box-shadow: 0 0 1rem rgb(20, 255, 255);
+  transition: transform 0.3s ease;
+}
+
+.bloque-transparente:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 4rem rgba(20, 255, 255, 0.9);
+}
+
+.icono {
+  margin-bottom: 10px;
+}
+
+.bloque-transparente h3 {
+  font-family: "Oregano", cursive;
+  margin-bottom: 5px;
+  font-size: 1.5rem;
+  color: #00ffff;
+}
+
+.bloque-transparente p {
+  font-family: "Protest Revolution", sans-serif;
+  font-size: 2rem;
+  color: rgb(0, 255, 170);
+}
+
+/* ----------------------------------Menú lateral---------------------------------- */
+.menu-button {
+  position: fixed;
+  top: 37%;                      /* Centrado verticalmente */
+  right: 0;                      /* Pegado a la derecha */
+  background-color: #4c0815;
+  color: #fefebd;
+  border: none;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 5rem 0 0 5rem;  /* Solo los bordes izquierdos circulares */
+  font-size: 1.1rem; 
+  font-family: "Goldman", sans-serif;
+  box-shadow: 0 0 1.5rem rgba(255, 53, 17, 0.693);
+}
+
+
+.menu-header {
+  display: flex;
+  flex-direction: column;      /* Logo arriba, texto abajo */
+  align-items: center;         /* Centrado horizontal */
+  justify-content: center;     /* Centrado vertical */
+  margin-bottom: 20px;         /* Espacio debajo del encabezado */
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;                 /* Ocupa todo el ancho para centrar bien */
+  padding-top: 10px;
+}
+
+.menu-logo {
+  width: 80px;                 /* Ajusta tamaño del logo */
+  height: auto;
+  margin-bottom: 5px;          /* Espacio entre logo y texto */
+}
+
+.menu-title {
+  font-family: "Sixtyfour Convergence", sans-serif;
+  /*font-family: "Goldman", sans-serif;*/
+  font-size: 0.75rem;
+  color: #fefebd;              /* Color acorde al menú */
+  text-align: center;
+}
+
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #222;
+  transition: right 0.3s ease;
+  padding-top: 60px;
+  z-index: 9;
+  /*box-shadow: 0 0 2rem rgb(0, 234, 255);*/
+  overflow-y: auto; /*Si el contenido del menú supera la altura de la pantalla, aparece automáticamente una barra vertical de scroll solo cuando sea necesario*/
+}
+
+
+.side-menu ul {
+  list-style: none;
+  margin-top: 120px; /* ajusta según tamaño del header */
+  padding: 0;
+}
+
+.side-menu li {
+  margin: 20px;
+}
+
+.side-menu a {
+  display: flex; /* Necesario para Espacio entre ícono y texto */
+  font-family: "Goldman", sans-serif;
+  color: #00ffff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  gap: 1rem;        /* Espacio entre ícono y texto */
+}
+.side-menu i {
+  color: rgb(0, 255, 149); /* Ícono azul */
+}
+
+/*Mostrar menú lateral y Agregar resplandor (glow) en el lado izquierdo del menú lateral, Pseudo-elemento para el glow */
+.side-menu.active {
+  right: 0; /*para mostrar el menu en el lado derecho al hacer clik en el botón menú - MENÚ LATERAL VISIBLE*/
+
+  /* resplandor hacia afuera */
+  box-shadow:
+    0 0 2rem rgba(25, 0, 255, 0.9);
+}
+
+.side-menu a:hover,
+.side-menu a:hover i {   /*Solución para que cambien ambos en el hover del menu*/
+  color: #ff8ea4;
+}
+
+.menu-button:hover {
+  background-color: #df3838;      /* Hover más oscuro */
+  box-shadow: 0 0 2rem rgb(0, 212, 245);
+}
+
+.menu-button i {
+  font-size: 1.1rem;                /* Tamaño del ícono */
+}
+
+/*Aplicar un degradado al texto y al ícono del menú seeccionado*/
+.side-menu a.active,
+.side-menu a.active i {
+  background: linear-gradient(0deg, #f100e9, #0015ff);
+  -webkit-background-clip: text; /* Recorta el background (degradado) solo al área del texto, no al bloque */
+  -webkit-text-fill-color: transparent; /* Hace que el relleno del texto sea transparente para mostrar el degradado */
+  /*font-weight: bold;*/
+  font-size: 1.5rem;
+}
+
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: rgba(255, 255, 255, 0.15); /* Fondo semitransparente */
+  border: none;
+  /*color: #fff;*/
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 11;
+  width: 40px;      /* Ancho del círculo */
+  height: 40px;     /* Alto del círculo */
+  border-radius: 50%; /* Forma circular */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 0 8px rgba(255, 53, 17, 0.693);
+}
+.close-button:hover {
+  background-color: rgba(255, 255, 255, 0.25); /* Más visible al pasar el mouse */
+  /*color: #ff8ea4;*/ /* Cambia color del ícono */
+  box-shadow: 0 0 25px rgba(255, 96, 17, 0.693);
+}
+
+
+/*-------------------Portada matrícula-------------------*/
+.matricula {
+  font-family: "Oregano", cursive;
+  background: linear-gradient(135deg, #004e92, #000428); /* Gradiente elegante */
+}
+
+.matricula-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 30px;
+  flex-wrap: wrap; /* Para que sea responsive */
+}
+
+.matricula-texto {
+  flex: 1;
+  min-width: 300px;
+}
+
+.matricula-texto h2 {
+  font-size: 4.5rem;
+  color: #80f473;
+  margin-bottom: 15px;
+}
+
+.matricula-texto p {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  color: #d5fffa;
+}
+
+.btn-matricula {
+  font-family: "Goldman", sans-serif;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4a0614;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 6rem;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btn-matricula i {
+  margin-right: 8px;
+}
+
+.btn-matricula:hover {
+  background-color: #df3838;
+}
+
+.matricula-imagen {
+  flex: 0.5;
+  min-width: 100px;
+  text-align: center;
+  filter: drop-shadow(0 0 6px #f791fe);
+}
+
+.matricula-imagen img {
+  max-width: 90%;
+  height: auto;
+}
+
+/*-------------------Propuesta Educativa-------------------*/
+.seccion-propuesta {
+  position: relative;
+  background: linear-gradient(135deg, #004e92, #000428);
+  overflow: hidden;
+}
+
+.wave-top,
+.wave-bottom {
+  width: 100%;
+  height: 100px;
+  line-height: 0;
+}
+
+.wave-top svg,
+.wave-bottom svg {
+  display: block;
+  width: 100%;
+  height: 100px;
+}
+
+.imagen-propuesta {
+  width: 16rem;
+  height: auto;
+  display: block;
+  margin: 0 auto; /*centrar la imagen*/
+  filter: drop-shadow(0 0 6px #00f2ff); /* Glow suave para integrarlo con el fondo */
+}
+
+
+/*Contenido dentro del bloque o contenedor delimitado por las OLAS*/
+/* Contenedor */
+.propuesta-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: flex-start;
+  margin-top: 2rem; /*Espacio arriba del contenedor para evitar conflicto con la onda top*/
+  margin-bottom: 2rem;   /*Agregamos espacio abajo del contenedor del contenido(propuesta-container: texto y bloques)*/
+  align-items: center; /* Centra verticalmente*/
+}
+
+/* Columna izquierda */
+.propuesta-texto {
+  flex: 1 1 40%;
+}
+
+.propuesta-texto h2 {
+  font-family: "Rubik Doodle Shadow", system-ui;
+  font-size: 2.75rem;
+  color: #84f184;
+  margin-bottom: 15px;
+}
+
+.propuesta-texto h2 span {
+  color: #00f2ff;
+}
+
+.propuesta-texto p {
+  font-size: 1.5rem;
+  color: #b4dbe4;
+  margin-bottom: 25px;
+  font-family: "Oregano", cursive;
+}
+
+.btn-propuesta {
+  display: inline-block;
+  padding: 12px 28px;
+  background: #490909;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.btn-propuesta:hover {
+  background: #df3838;
+}
+
+/* Bloques */
+.propuesta-bloques {
+  flex: 1 1 55%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.bloque {
+  /*background: #fff;*/
+  background: linear-gradient(135deg, #150041, #ffffe2);
+  
+  padding: 20px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 0 1rem rgba(90, 255, 107, 0.9);
+}
+
+.bloque i {
+  font-size: 4rem;
+  color: #3e0040;
+  margin-bottom: 10px;
+
+}
+.bloque h3 {
+  font-family: "Goldman", sans-serif;
+  color: #ffbc04;
+  margin-bottom: 1rem;
+}
+
+.bloque p {
+  font-size: 1rem;
+  color: #fff704;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .propuesta-container {
+    flex-direction: column;
+  }
+  .propuesta-bloques {
+    grid-template-columns: 1fr;
+  }
+  .propuesta-texto h2 {
+    font-size: 2rem;
+  }
+}
+
+
+
+
+
+/* --------------------------Sección Noticias-------------------------- */
+.seccion-noticias {
+  padding: 2rem;
+  background-color: #1a1a1a;
+  text-align: center;
+}
+
+.seccion-noticias h2 {
+  color: #00f2ff;
+  font-family: "Rubik Doodle Shadow", system-ui;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.seccion-noticias h2 span {
+  color: #ed4e71;
+  font-size: 3rem;
+}
+
+.seccion-noticias p {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+/* Estilo para los posts embebidos */
+.facebook-feed {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  align-items: start;
+}
+
+.fb-post iframe {
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.fb-post iframe:hover {
+  transform: scale(1.02);
+}
+
+
+
+
+/*-------------------Sección ubicación-------------------*/
+.seccion-ubicacion {
+  background: linear-gradient(135deg,#1a1a1a, #150041); /* FONDO DE LADO A LADO */
+  padding: 60px 20px; /* Espaciado superior e inferior */
+}
+
+.ubicacion-contenido {
+  max-width: 750px; /* CONTENIDO CENTRADO */
+  margin: 0 auto;
+  text-align: center;
+}
+
+.info-ubicacion h2 {
+  color: #00f2ff;
+  font-family: "Rubik Doodle Shadow", system-ui;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.info-ubicacion p {
+  font-size: 1.1rem;
+  color: #ddd; /* cambiado a claro para mejor contraste */
+  margin-bottom: 30px;
+}
+
+.map-container {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 450px;
+  border: 0;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.map-container:hover iframe {
+  transform: scale(1.02);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .info-ubicacion h2 {
+    font-size: 1.6rem;
+  }
+
+  .info-ubicacion p {
+    font-size: 1rem;
+  }
+
+  .map-container iframe {
+    height: 300px;
+  }
+}
+
+
+
+
+
+/*-------------------Pie de página-------------------*/
+.footer {
+  background-color: #222;
+  color: #fff;
+  padding: 1.5rem 1rem 1.5rem ;  /*asiganmos espacio a [arriba] [derecha e izquierda] [abajo];*/
+  font-family: "Goldman", sans-serif;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: auto;
+  margin-bottom: 1rem;  /*Espacio a la parte baja del 1er encabezado*/
+}
+
+
+.footer-logo-link {
+  text-decoration: none;         /* Sin subrayado */
+  display: flex;
+  flex-direction: column;        /* Logo arriba, texto abajo */
+  align-items: center;
+  color: #fefebd;               /* Color del texto */
+}
+
+.footer-logo-link:hover .menu-title {
+  color: #d2ff8e;               /* Color del texto al pasar el mouse */
+  /*text-decoration: underline;
+  text-decoration-thickness: 3px;*/
+}
+
+
+
+.footer-brand img.footer-logo {
+  width: 6rem;
+  /*margin-bottom: 5px;*/
+}
+.footer-brand {
+  text-align: center;
+  align-items: center;
+}
+
+.footer-title {
+  font-family: "Sixtyfour Convergence", sans-serif;
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+
+.footer-text {
+  font-size: 0.95rem;
+  color: #e0bd10;
+}
+
+.footer-links h3,
+.footer-social h3,
+.footer-contact h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #8dd8e5;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+  color: #cccccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+  color: #f584f1;
+}
+
+.footer-social .social-icons a {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 1.75rem;
+  color: #00ff8c;
+  transition: color 0.3s ease;
+}
+
+.footer-social .social-icons a:hover {
+  color: #6c34db;
+}
+
+.footer-contact p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+}
+
+.footer-contact i {
+  margin-right: 8px;
+  color: #cafdd4;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #333; /* 👈 ESTA LÍNEA GENERA LA SEPARACIÓN ENTRE EL FOOTER TOP Y BOT */
+  font-size: 0.85rem;
+  color: #edc6c6;
+}
+
+/*.contenido-extra::before {
+  content: "";
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffcc);
+  background-size: 200% 100%;
+  animation: animate-line 3s linear infinite;
+}
+
+@keyframes animate-line {
+  from { background-position: 0 0; }
+  to   { background-position: 200% 0; }
+}*/
