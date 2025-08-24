@@ -316,9 +316,8 @@ body {
   filter: drop-shadow(0 0 6px #f791fe);
 
   /*para centrar la imagen*/
-  display: flex;            /* Activa flexbox */
-  justify-content: center;  /* Centra horizontalmente */
-  align-items: center;      /* Centra verticalmente */
+  display: block;
+  margin: 0 auto;
 }
 
 .matricula-imagen img {
@@ -697,3 +696,4 @@ body {
   to   { background-position: 200% 0; }
 
 }*/
+
